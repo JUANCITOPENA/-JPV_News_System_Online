@@ -66,3 +66,97 @@ Sigue estos pasos para desplegar el proyecto en tu máquina local.
 ```bash
 git clone https://github.com/tu-usuario/jpv-news.git
 cd jpv-news
+```
+
+### 2. Configurar Variables de Entorno
+
+Crea un archivo `.env` en la raíz del proyecto (este archivo es ignorado por Git por seguridad):
+```ini
+# .env
+NEWS_API_KEY=tu_clave_de_newsdata_io
+TMDB_API_KEY=tu_clave_de_tmdb
+```
+
+**Nota:** El archivo `script.js` contiene una lógica híbrida. Si estás en localhost, usará claves de respaldo internas. Si despliegas en Vercel, usará las variables de entorno del servidor.
+
+### 3. Ejecutar en Local
+
+Debido a las políticas de CORS y Módulos, no puedes abrir el `index.html` directamente.
+
+- **Opción A (VS Code):** Instala la extensión "Live Server", haz clic derecho en `index.html` y elige "Open with Live Server".
+- **Opción B (Python):** `python -m http.server 8000`
+
+---
+
+## 📂 Arquitectura del Proyecto
+```
+/jpv-news
+│
+├── api/                  # Backend (Serverless Functions)
+│   ├── news.js           # Proxy seguro para noticias
+│   └── cinema.js         # Proxy seguro para TMDB
+│
+├── index.html            # Estructura Semántica (SEO Friendly)
+├── style.css             # Estilos Cyberpunk & Animaciones
+├── script.js             # Lógica: Router, Fetching, State Management
+├── .env                  # Secretos (No subir a repo)
+└── README.md             # Documentación
+```
+
+---
+
+## 🧠 ¿Qué se aprende con este proyecto?
+
+Este desarrollo va más allá de un simple "Hola Mundo". Aborda conceptos de ingeniería de software:
+
+- **Patrón Adapter:** Normalización de datos provenientes de dos fuentes distintas (Noticias y Cine) para que encajen en una misma interfaz de UI (`render()`).
+- **State Management Artesanal:** Gestión de un estado global (`state` object) sin usar Redux o Context API.
+- **Seguridad en Frontend:** Cómo ocultar API Keys utilizando Proxies Serverless en Vercel para evitar robos de credenciales.
+- **Optimización de Rendimiento:** Uso de lazy-loading, paginación basada en tokens y manejo de errores (fallback images).
+- **UX/UI Avanzado:** Feedback visual al usuario (Loaders, Spinners, Animaciones CSS).
+
+---
+
+## 🔮 Roadmap y Mejoras Futuras
+
+Estamos comprometidos con la mejora continua. Aquí algunas ideas para la versión 2.0:
+
+- **PWA (Progressive Web App):** Hacerla instalable en móviles y con soporte offline.
+- **IA Summaries:** Integrar OpenAI para generar resúmenes de noticias en 3 puntos clave.
+- **Favoritos:** Usar `localStorage` para guardar noticias para leer después.
+- **Social Share:** API nativa del navegador para compartir contenido en redes.
+
+---
+
+## 🤝 Contribuciones
+
+¡Las contribuciones son bienvenidas! Si tienes una idea para mejorar el diseño Cyberpunk o añadir una nueva API:
+
+1. Haz un Fork del proyecto.
+2. Crea tu rama de características (`git checkout -b feature/AmazingFeature`).
+3. Haz commit de tus cambios (`git commit -m 'Add some AmazingFeature'`).
+4. Push a la rama (`git push origin feature/AmazingFeature`).
+5. Abre un Pull Request.
+
+---
+
+## 📜 Licencia
+
+Este proyecto está bajo la Licencia MIT. Consulta el archivo `LICENSE` para más detalles.
+
+---
+
+<div align="center">
+
+<p>Desarrollado con 💻 y ☕ por <strong>Juancito Peña</strong></p>
+
+<p>
+  <a href="https://github.com/tu-usuario" target="_blank">
+    <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" alt="GitHub">
+  </a>
+  <a href="https://linkedin.com/in/tu-usuario" target="_blank">
+    <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn">
+  </a>
+</p>
+
+</div>
